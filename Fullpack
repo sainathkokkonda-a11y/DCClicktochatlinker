@@ -1,0 +1,294 @@
+<div class="advanced-wa-container">
+    <div class="wa-header">
+        <br /><h3>Click to Chat Linker</h3>
+        <p>Create chat links with worldwide country codes &amp; QR codes</p>
+    </div>
+    
+    <div class="wa-body">
+        <!--1. Country Code & Phone-->
+        <div class="wa-form-group">
+            <label>1. WhatsApp Number</label>
+            <div class="phone-input-row">
+                <select id="countryCode" onchange="checkManualCode(this)">
+                    <option value="91">🇮🇳 +91 (India)</option>
+                    <option value="1">🇺🇸 +1 (USA/Canada)</option>
+                    <option value="44">🇬🇧 +44 (United Kingdom)</option>
+                    <option value="971">🇦🇪 +971 (UAE)</option>
+                    <option value="966">🇸🇦 +966 (Saudi Arabia)</option>
+                    <option value="65">🇸🇬 +65 (Singapore)</option>
+                    <option value="60">🇲🇾 +60 (Malaysia)</option>
+                    <option value="61">🇦🇺 +61 (Australia)</option>
+                    <option value="49">🇩🇪 +49 (Germany)</option>
+                    <option value="33">🇫🇷 +33 (France)</option>
+                    <option value="81">🇯🇵 +81 (Japan)</option>
+                    <option value="86">🇨🇳 +86 (China)</option>
+                    <option value="55">🇧🇷 +55 (Brazil)</option>
+                    <option value="27">🇿🇦 +27 (South Africa)</option>
+                    <option value="92">🇵🇰 +92 (Pakistan)</option>
+                    <option value="880">🇧🇩 +880 (Bangladesh)</option>
+                    <option value="94">🇱🇰 +94 (Sri Lanka)</option>
+                    <option value="977">🇳🇵 +977 (Nepal)</option>
+                    <option value="other">✍️ Other (Manual Entry)</option>
+                </select>
+                
+                <input id="manualCode" maxlength="5" style="display: none;" type="text" />
+                
+                <input id="waPhone" type="text" />
+            </div>
+        </div>
+
+        <!--2. Pre-made Message Templates-->
+        <div class="wa-form-group">
+            <label>2. Quick Message Templates</label>
+            <select id="templateSelector">
+                <option value="">-- Select a template (Optional) --</option>
+                <option value="Hi, I am interested in your products/services. Please share more details.">General Inquiry</option>
+                <option value="Hello, I want to know the price and availability of this item.">Price Inquiry</option>
+                <option value="Hi, I need technical support regarding your services.">Technical Support</option>
+                <option value="Hello, I want to place an order. Please guide me.">Order Placement</option>
+            </select>
+        </div>
+
+        <!--3. Custom Message Box-->
+        <div class="wa-form-group">
+            <label>3. Custom Message</label>
+            <textarea id="waMessage"></textarea>
+        </div>
+
+        <button id="waGenerateBtn">Generate Link &amp; QR Code</button>
+
+        <!--Result Section-->
+        <div class="wa-result-box" id="waResultBox" style="display: none;">
+            <label>Your WhatsApp Link</label>
+            <input id="waOutputLink" readonly="" type="text" />
+            <div class="wa-btn-row">
+                <button id="waCopyBtn">Copy Link</button>
+                <a href="" id="waTestBtn" target="_blank">Test Link</a>
+            </div>
+            
+            <!--QR Code Display Area-->
+            <div class="qr-container" style="margin-top: 15px; text-align: center;">
+                <label style="display: block; margin-bottom: 5px;">Scan QR Code</label>
+                <img alt="WhatsApp QR Code" id="qrImage" src="" style="border-radius: 6px; border: 4px solid rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; max-width: 150px;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.advanced-wa-container {
+    max-width: 550px;
+    width: 100%;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 2px solid #1877f2;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.15);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.wa-header {
+    background-color: #1877f2;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.wa-header h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.wa-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #e7f3ff;
+}
+
+.wa-body {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.wa-form-group {
+    margin-bottom: 18px;
+}
+
+.wa-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-bottom: 8px;
+}
+
+/* మొబైల్ రెస్పాన్సివ్ లేఅవుట్ సెట్టింగ్ */
+.phone-input-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; /* స్క్రీన్ చిన్నదైతే ఆటోమేటిక్‌గా కిందకి సర్దుకుంటుంది */
+}
+
+.advanced-wa-container select,
+.advanced-wa-container input[type="text"],
+.advanced-wa-container textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 1.5px solid #cfe2ff;
+    border-radius: 8px;
+    color: #333333;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#countryCode {
+    flex: 1;
+    min-width: 140px;
+}
+
+#manualCode {
+    width: 90px;
+    flex-shrink: 0;
+}
+
+#waPhone {
+    flex: 2;
+    min-width: 160px;
+}
+
+.advanced-wa-container select:focus,
+.advanced-wa-container input[type="text"]:focus,
+.advanced-wa-container textarea:focus {
+    border-color: #1877f2;
+}
+
+.advanced-wa-container textarea {
+    height: 75px;
+    resize: vertical;
+}
+
+#waGenerateBtn, #waCopyBtn, #waTestBtn {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+
+#waGenerateBtn:hover, #waCopyBtn:hover {
+    background-color: #145dbf;
+}
+
+.wa-result-box {
+    margin-top: 20px;
+    background-color: #f0f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #cfe2ff;
+    box-sizing: border-box;
+}
+
+.wa-btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#waTestBtn {
+    background-color: #28a745;
+}
+#waTestBtn:hover {
+    background-color: #218838;
+}
+
+/* మొబైల్ స్క్రీన్ల కోసం అదనపు కంట్రోల్స్ */
+@media (max-width: 480px) {
+    .phone-input-row {
+        flex-direction: column; /* చిన్న స్క్రీన్లపై అన్నీ నిలువుగా వరుసలో వస్తాయి */
+    }
+    #countryCode, #manualCode, #waPhone {
+        width: 100% !important;
+    }
+    .wa-btn-row {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+function checkManualCode(selectObj) {
+    const manualInput = document.getElementById('manualCode');
+    if(selectObj.value === 'other') {
+        manualInput.style.display = 'block';
+        manualInput.focus();
+    } else {
+        manualInput.style.display = 'none';
+    }
+}
+
+document.getElementById('templateSelector').addEventListener('change', function() {
+    const selectedTemplate = this.value;
+    if(selectedTemplate) {
+        document.getElementById('waMessage').value = selectedTemplate;
+    }
+});
+
+document.getElementById('waGenerateBtn').addEventListener('click', function() {
+    const selectElem = document.getElementById('countryCode');
+    let countryCode = selectElem.value;
+    
+    if(countryCode === 'other') {
+        countryCode = document.getElementById('manualCode').value.trim();
+    }
+    
+    const phone = document.getElementById('waPhone').value.trim();
+    const message = document.getElementById('waMessage').value.trim();
+    
+    if(!phone) {
+        alert("Please enter a valid mobile number.");
+        return;
+    }
+    if(!countryCode && selectElem.value === 'other') {
+        alert("Please enter a valid country code.");
+        return;
+    }
+    
+    const cleanPhone = countryCode.replace(/[^0-9]/g, '') + phone.replace(/[^0-9]/g, '');
+    const encodedMessage = encodeURIComponent(message);
+    const finalUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
+    
+    const outputInput = document.getElementById('waOutputLink');
+    outputInput.value = finalUrl;
+    
+    const qrImage = document.getElementById('qrImage');
+    qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(finalUrl)}`;
+    
+    document.getElementById('waResultBox').style.display = 'block';
+    document.getElementById('waTestBtn').href = finalUrl;
+});
+
+document.getElementById('waCopyBtn').addEventListener('click', function() {
+    const outputInput = document.getElementById('waOutputLink');
+    outputInput.select();
+    outputInput.setSelectionRange(0, 99999);
+    
+    navigator.clipboard.writeText(outputInput.value).then(() => {
+        alert("WhatsApp link copied to clipboard!");
+    });
+});
+</script>
