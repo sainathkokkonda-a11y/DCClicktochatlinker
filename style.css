@@ -1,0 +1,150 @@
+.advanced-wa-container {
+    max-width: 550px;
+    width: 100%;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 2px solid #1877f2;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.15);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.wa-header {
+    background-color: #1877f2;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.wa-header h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.wa-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #e7f3ff;
+}
+
+.wa-body {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.wa-form-group {
+    margin-bottom: 18px;
+}
+
+.wa-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-bottom: 8px;
+}
+
+.phone-input-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.advanced-wa-container select,
+.advanced-wa-container input[type="text"],
+.advanced-wa-container textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 1.5px solid #cfe2ff;
+    border-radius: 8px;
+    color: #333333;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#countryCode {
+    flex: 1;
+    min-width: 140px;
+}
+
+#manualCode {
+    width: 90px;
+    flex-shrink: 0;
+}
+
+#waPhone {
+    flex: 2;
+    min-width: 160px;
+}
+
+.advanced-wa-container select:focus,
+.advanced-wa-container input[type="text"]:focus,
+.advanced-wa-container textarea:focus {
+    border-color: #1877f2;
+}
+
+.advanced-wa-container textarea {
+    height: 75px;
+    resize: vertical;
+}
+
+#waGenerateBtn, #waCopyBtn, #waTestBtn {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+
+#waGenerateBtn:hover, #waCopyBtn:hover {
+    background-color: #145dbf;
+}
+
+.wa-result-box {
+    margin-top: 20px;
+    background-color: #f0f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #cfe2ff;
+    box-sizing: border-box;
+}
+
+.wa-btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#waTestBtn {
+    background-color: #28a745;
+}
+#waTestBtn:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    .phone-input-row {
+        flex-direction: column;
+    }
+    #countryCode, #manualCode, #waPhone {
+        width: 100% !important;
+    }
+    .wa-btn-row {
+        flex-direction: column;
+    }
+}
